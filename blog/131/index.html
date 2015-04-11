@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Blog | Oliver Pearmain</title>
+	<link rel="shortcut icon" href="../../wp-content/themes/clean-simple-white/favicon.ico" />	<link href="../../wp-content/themes/clean-simple-white/style.css" rel="stylesheet" type="text/css" media="screen" />
+		<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc.php-rsd.xml" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='Oliver Pearmain' href='../../index.html' />
+<meta name="generator" content="WordPress 2.9.2" />
+	
+<!-- START: Syntax Highlighter ComPress -->
+<script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-compress/scripts/shCore.js"></script>
+<script type="text/javascript" src="../../wp-content/plugins/syntax-highlighter-compress/scripts/shAutoloader.js"></script>
+<link type="text/css" rel="stylesheet" href="../../wp-content/plugins/syntax-highlighter-compress/styles/shCoreDefault.css"/>
+<!-- END: Syntax Highlighter ComPress -->
+
+  </head>
+
+<body>
+	<div id="wrapper">
+	<div id="container">
+	<div id="header">
+		<div id="head-title"><a href="../../index.html">Oliver Pearmain</a></div>
+		<div id="head-desc"></div>
+	</div><!-- end header -->
+
+	<div id="head-nav">
+		<ul id="nav">
+			<li class="page_item page-item-23"><a href="../../index.html" title="Home">Home</a></li>
+<li class="page_item page-item-21 current_page_item"><a href="../index.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-15"><a href="../../android/index.html" title="Android">Android</a>
+<ul>
+	<li class="page_item page-item-18"><a href="../../android/in-app-wifi-toggle/index.html" title="In-App Wifi Toggle">In-App Wifi Toggle</a></li>
+	<li class="page_item page-item-43"><a href="../../android/in-app-bluetooth-toggle/index.html" title="In-App Bluetooth Toggle">In-App Bluetooth Toggle</a></li>
+	<li class="page_item page-item-46"><a href="../../android/in-app-donate/index.html" title="In-App Donate">In-App Donate</a></li>
+</ul>
+</li>
+<li class="page_item page-item-10"><a href="../../projects/index.html" title="Projects">Projects</a></li>
+<li class="page_item page-item-2"><a href="../../about/index.html" title="About">About</a></li>
+<li class="page_item page-item-97"><a href="../../contact/index.html" title="Contact">Contact</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div><!-- end head-nav -->
+
+	<div id="main-content"><div id="post-367">
+<h2><a href="../changing-a-websites-site-name-in-iis-7/index.html">Changing a Websites Site Name in IIS 7</a></h2>
+<div class="post-meta">Posted in <a href="../category/miscellaneous/index.html" title="View all posts in Miscellaneous" rel="category tag">Miscellaneous</a> - 12 October 2012 - 3 comments</div>
+<p>Rather inconveniently there doesn&#8217;t seemed to be a way to rename your websites in the IIS Manager UI.  Everywhere the &#8220;Site Name&#8221; appears its greyed out and unchangable; I guess Microsoft have their reasons. </p>
+<p>Fortunately you don&#8217;t have to delete and recreate your entire site to be able to rename, this task can be performed from the command line using the <a href="http://www.iis.net/learn/get-started/getting-started-with-iis/getting-started-with-appcmdexe">appcmd.exe</a> utility.  </p>
+<p>Run the windows command processor but ensure you &#8220;<strong>Run as Administrator</strong>&#8221; and use the following commands:</p>
+<p><code>cd C:\Windows\SysWOW6\inetsrv\<br />
+appcmd set site ExistingSiteName -name:NewSiteName</code></p>
+<p>Thats it you&#8217;re done!</p>
+<p>Also after discovering the above I found a requirement to rename a virtual directory (adding a number on the end to remove any possibility of client caching) using the same utility&#8230;</p>
+<p><code><br />
+appcmd set VDIR "Default Web Site/oldVDirName" -path:/newVDirName<br />
+</code></p>
+<p>Plus if you had any Applications living under that virtual directory then you&#8217;ll need to move them also else they&#8217;ll be lost in oblivion&#8230;.</p>
+<p><code><br />
+appcmd set APP "Default Web Site/oldVDirName/MyApplication" -path:/newVDirName/MyApplication<br />
+</code></p>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-359">
+<h2><a href="../why-i-always-use-curly-bracesbrackets/index.html">Why I Always Use Curly Braces/Brackets</a></h2>
+<div class="post-meta">Posted in <a href="../category/c-sharp/index.html" title="View all posts in C#" rel="category tag">C#</a> - 26 September 2012 - No comment</div>
+<p>Developer 1 really, really hates whitespace, it’s the spawn of the devil you know, he codes the following:</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    doSomething();
+mustHappenAfterIfStamement();
+</pre>
+<p>Inexperienced (or incompetent) developer 2 comes along to fix a problem or add a feature and fails many times.</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    // doSomething(); I've temporarily commented out this line for debugging, oops I've now foobar'ed the flow of code execution, worth it for the whitespace saved though &lt;high fives dev 1, he’s the man&gt;
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    // I've subsequently added this comment, other devs might be confused about whether doSomething() is
+    // executed or not, but ah well at least dev 1 saved that whitespace, I hate whitespace too, even though I have a 3x 27" monitors
+    doSomething();
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    doSomething();
+    doSomthingMore(); // I’m not very good at tabbing, I'm hoping this will be executed only when condition is true, however it'll also be executed if its false. I hate it when it snows, it’s the white you see
+mustHappenAfterIfStamement();
+</pre>
+<p>I come along sees dev 1’s code and automatically refactor because I&#8217;ve made it my habit to always included curly braces.  Quick call the whitespace police… or not, it doesn’t even have to cost you your wonderful whitespace.</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+{   // OMG white space, my eyes are bleeding, kill me
+    doSomething();
+}   // this is insane, help me god, no more of the whiteness
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition) { doSomething(); }
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    { doSomething(); }
+mustHappenAfterIfStamement();
+</pre>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-350">
+<h2><a href="../android-how-to-launch-an-email-intent-attaching-a-resource-via-a-url/index.html">Android: How To Launch an Email Intent Attaching a Resource via a URL</a></h2>
+<div class="post-meta">Posted in <a href="../category/miscellaneous/index.html" title="View all posts in Miscellaneous" rel="category tag">Miscellaneous</a> - 8 August 2012 - 3 comments</div>
+<p>Today at work I had the requirement to invoke an intent that would send a plain text email but with an <strong>image attachment sourced from the internet</strong>.  I struggled to find a complete solution online for these particular requirements and thought I&#8217;d share my solution here.</p>
+<pre class="brush:java; gutter: false;">
+String urlOfImageToDownload = "https://ssl.gstatic.com/s2/oz/images"
+    + "/google-logo-plus-0fbe8f0119f4a902429a5991af5db563.png";
+String attachmentFileName = "AnImageFromTheWeb.png";
+
+// Start to build up the email intent
+Intent i = new Intent(Intent.ACTION_SEND);
+i.setType("message/rfc822");
+i.putExtra(Intent.EXTRA_EMAIL, new String[] { "abc@mail.com" });
+i.putExtra(Intent.EXTRA_SUBJECT, "Check Out This Image");
+i.putExtra(Intent.EXTRA_TEXT, "There should be an image attached");
+
+// Do we need to download and attach an icon and is the SD Card available?
+if (urlOfImageToDownload != null &#038;&#038; Environment.MEDIA_MOUNTED.equals(
+        Environment.getExternalStorageState())) {
+    // Download the icon...
+    URL iconUrl = new URL(urlOfImageToDownload);
+    HttpURLConnection connection
+        = (HttpURLConnection) iconUrl.openConnection();
+    connection.setDoInput(true);
+    connection.connect();
+    InputStream input = connection.getInputStream();
+    Bitmap immutableBpm = BitmapFactory.decodeStream(input);
+
+    // Save the downloaded icon to the pictures folder on the SD Card
+    File directory = Environment.getExternalStoragePublicDirectory(
+        Environment.DIRECTORY_PICTURES);
+    directory.mkdirs(); // Make sure the Pictures directory exists.
+    File destinationFile = new File(directory, attachmentFileName);
+    FileOutputStream out = new FileOutputStream(destinationFile);
+    immutableBpm.compress(Bitmap.CompressFormat.PNG, 90, out);
+    out.flush();
+    out.close();
+    Uri mediaStoreImageUri = Uri.fromFile(destinationFile);		
+
+    // Add the attachment to the intent
+    i.putExtra(Intent.EXTRA_STREAM, mediaStoreImageUri);
+}						
+
+// Fire the intent
+startActivity(i);
+</pre>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-325">
+<h2><a href="../unboxing-of-hd-anywhere-44-hdmi-cat-56-matrix-switch-aka-grandbeing-mx0404-323/index.html">Unboxing of HD Anywhere 4&#215;4 HDMI CAT 5/6 Matrix Switch (aka Grandbeing MX0404-323)</a></h2>
+<div class="post-meta">Posted in <a href="../category/miscellaneous/index.html" title="View all posts in Miscellaneous" rel="category tag">Miscellaneous</a> - 4 May 2011 - 2 comments</div>
+<p>I purchased a HD Anywhere 4&#215;4 HDMI CAT 5/6 Matrix Switch a while and took some photos at the time of the unboxing and I&#8217;m finally getting round to sharing! This item is a replacement for the <a href="../experiences-with-octava-4x4-hdmi-matrix-switch-hdmx44cat-uk/index.html">Octava</a> equivalent that I had previously trialled with limited success and have since returned.</p>
+<p>The unit was purchased from <a target="_blank" href="http://www.hdcable.co.uk/4x4-hdmi-matrix-hd-anywhere.html?SID=n6q6apmmpt90gebjvlcv5fqkp7">HD Cable</a> using their &#8216;AVF10&#8242; discount code which got me 10% off.  Upon receiving the unit, I did search of the interwebs and discovered that the unit is in fact just a rebranded <a target="_blank" href="http://www.grandbeing.com/product/MX0404%20323.htm">Grandbeing MX0404-323</a>.  All good.</p>
+<p>When I get the chance I&#8217;ll follow up with some details of my AV setup and experiences using the matrix&#8230;</p>
+<div>
+<a href="../../images/hd-anywhere/01.jpg"><img src="../../images/hd-anywhere/01-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/02.jpg"><img src="../../images/hd-anywhere/02-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/03.jpg"><img src="../../images/hd-anywhere/03-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/04.jpg"><img src="../../images/hd-anywhere/04-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/05.jpg"><img src="../../images/hd-anywhere/05-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/06.jpg"><img src="../../images/hd-anywhere/06-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/07.jpg"><img src="../../images/hd-anywhere/07-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/08.jpg"><img src="../../images/hd-anywhere/08-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/09.jpg"><img src="../../images/hd-anywhere/09-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/10.jpg"><img src="../../images/hd-anywhere/10-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/11.jpg"><img src="../../images/hd-anywhere/11-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/12.jpg"><img src="../../images/hd-anywhere/12-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/13.jpg"><img src="../../images/hd-anywhere/13-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a>  <a href="../../images/hd-anywhere/14.jpg"><img src="../../images/hd-anywhere/14-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/15.jpg"><img src="../../images/hd-anywhere/15-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/16.jpg"><img src="../../images/hd-anywhere/16-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../images/hd-anywhere/17.jpg"><img src="../../images/hd-anywhere/17-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../images/hd-anywhere/18.jpg"><img src="../../images/hd-anywhere/18-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a></p>
+</div>
+<div style="clear: both; display: block;"></div>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-310">
+<h2><a href="../experiences-with-octava-4x4-hdmi-matrix-switch-hdmx44cat-uk/index.html">Experiences with Octava 4&#215;4 HDMI Matrix Switch (HDMX44CAT-UK)</a></h2>
+<div class="post-meta">Posted in <a href="../category/audio-video/index.html" title="View all posts in Audio Video" rel="category tag">Audio Video</a> - 1 April 2011 - 7 comments</div>
+<p>I posted the <a href="../unboxing-of-octava-4x4-hdmi-matrix-switch-hdmx44cat-uk/index.html">Unboxing of Octava 4×4 HDMI Matrix Switch (HDMX44CAT-UK)</a> a while back having just taken delivery of the Octava unit.</p>
+<p>Anyways, having owned and tried using the box for a over a month I am disappointed to report that I have returned it.  The matrix gave me a host of problems, some of which I overcame with some rigorous trial and error techniques, others of which I wasn&#8217;t so lucky.</p>
+<p>My full experience is documented over at AVForums in my <a target="_blank" href="http://www.avforums.com/forums/hdmi-cables-switches/1406492-experiences-octava-4x4-hdmi-cat6-matrix-switch-hdmx44cat-uk.html">Experiences with Octava 4&#215;4 HDMI CAT6 Matrix Switch (HDMX44CAT-UK)</a> thread.  It is a bit of a long read so to summarise the final list of the unresolved issues that I experienced with the Octava matrix are as follows&#8230;</p>
+<ul>
+<li>No sound on Sharp TV, regardless of EDID mode (unless I performed a complex cable swap, to force HDMI handshake, with every matrix reboot)</li>
+<li>REVO/XBMC/HTPC would frequently get &#8220;lost&#8221; (no picture/sound routed to any receiver) by the matrix (when being brought out of standby normally). The only way to fix was to reboot both the REVO and the matrix</li>
+<li>Certain sources (Xbox 360) not automatically detecting sink device as 1080P capable (wasn&#8217;t a immediate problem since I can manually force the source to do 1080P but could see issues going forward if I were to add other source devices that don&#8217;t have the appropriate settings)</li>
+<li>Intermittent IR issues (I put this down to interference being emitted from my Samsung TV however when trying to debug the issue I found that pulling the IR cable out of one of the extenders would cause all IR to stop working all together from any extender, very strange, there seems to me there&#8217;s way to much &#8216;dependency&#8217; in the matrix)</li>
+</ul>
+<p>I am however pleased to report that I have recently taken delivery of a HD Anywhere 4&#215;4 matrix and so far this works almost flawlessly out of the box. I am still testing however and will report more soon. </p>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-261">
+<h2><a href="../holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/index.html">Holy Smokes, Someone Just Put a Rocket Up My [2.2.2] Nexus One (INIT Android Process Lag/Slow Down Fix)</a></h2>
+<div class="post-meta">Posted in <a href="../category/android/index.html" title="View all posts in Android" rel="category tag">Android</a>,  <a href="../category/nexus-one/index.html" title="View all posts in Nexus One" rel="category tag">Nexus One</a> - 1 March 2011 - No comment</div>
+<p>For many months now I&#8217;ve been experiencing varied periods of &#8220;lag&#8221; or &#8220;slow down&#8221; on my Nexus One Android phone (running FRG83G 2.2.2) .  I&#8217;d never been able to attribute this slow down to any particular application even with the help of task managers and task killers and diagnostic tools&#8230; until now&#8230;</p>
+<p>With some help from the &#8220;Watchdog&#8221; app (which continuously monitors all the process on your phone and notifies you if a given process has exceeded a given CPU threshold) I was finally able to attribute the problems to the &#8220;INIT&#8221; android system process. </p>
+<p>Once I&#8217;d identified this process as the problem I did a bit of Googling.  First, I found a lot of others complaining about this issue on the <a href="http://www.google.com/support/forum/p/android/thread?tid=7da0c666e8ffbc36&hl=en" target="_blank">Google forums</a> but with no apparent solution.  Then fortunately I came across an <a href="http://forum.xda-developers.com/showthread.php?t=826507" target="_blank">XDA developers</a> thread that proposed to have the solution!</p>
+<p>I am very pleased to confirm that enabling the following option&#8230;</p>
+<p>    Settings > Applications > Development > USB debugging </p>
+<p>&#8230;has fixed the problem entirely.  In fact, it has absolutely made my phone run like its on steroids.  I&#8217;m staggered and absolutely elated by the difference. </p>
+<p>Many thanks to &#8220;rixsta&#8221; @XDA for the fix.</p>
+<p>For those wondering here&#8217;s a description of the &#8220;init&#8221; process&#8230;</p>
+<p><i><br />
+A key component of the Android bootup sequence is the program &#8216;init&#8217;, which is a specialized program for initializing elements of the Android system. Unlike other Linux systems (embedded or otherwise), Android uses its own initialization program. (Linux desktop systems have historically used some combination of /etc/inittab and sysV init levels &#8211; e.g. /etc/rc.d/init.d with symlinks in /etc/rc.d/rc.[2345]). Some embedded Linux systems use simplified forms of these &#8212; such as the init program included in busybox, which processes a limited form of /etc/inittab, or a direct invocation of a shell script or small program to do fixed initialization steps.</p>
+<p>The init program processes two files, executing the commands it finds in them, called &#8216;init.rc&#8217; and &#8216;init.<machine_name>.rc&#8217;, where <machine_name> is the name of the hardware that Android is running on. (Usually, this is a code word. The name of the HTC1 hardware for the ADP1 is &#8216;trout&#8217;, and the name of the emulator is &#8216;goldfish&#8217;.</p>
+<p>the &#8216;init.rc&#8217; file is intended to provide the generic initialization instructions, while the &#8216;init.<machine_name>.rc&#8217; file is intended to provide the machine-specific initialization instructions.<br />
+</i></p>
+<p><b>UPDATE: I have since received a system update to gingerbread 2.3.3 GRI40 and this seems to have fixed the issue so the USB Debugging fix is no longer required.</b></p>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-253">
+<h2><a href="../using-maxdop-with-complex-sql-queries/index.html">Using MAXDOP with Complex SQL Queries</a></h2>
+<div class="post-meta">Posted in <a href="../category/sql/index.html" title="View all posts in SQL" rel="category tag">SQL</a> - 14 February 2011 - No comment</div>
+<p>We came across a problem at work today where the CPU resource of a quad core MS SQL machine was totally consumed by someone issuing a rather complex and time-consuming SQL query (it wasn&#8217;t me honest!).</p>
+<p>If you&#8217;re unable to optimize or avoid running such a complex query then it is recommended you use the <a href="http://support.microsoft.com/kb/329204" target="_blank">MAXDOP</a> (maximum degree&#8217;s of parallelism) query hint which enables you to specify the number of CPU&#8217;s used by the query.</p>
+<p>Here&#8217;s an example, using only a single CPU&#8230;</p>
+<pre class="brush:sql; gutter: false;">
+SELECT * FROM tblWithLoadsOfData WITH (NOLOCK)
+WHERE  (someField LIKE '%blah%'
+      OR someField LIKE '%foo%'
+      OR someField LIKE '%goober%'
+      OR someField LIKE '%ollie%'
+      OR someField LIKE '%cpu%'
+      OR someField LIKE '%maxdop%')
+OPTION (MAXDOP 1)
+</pre>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-234">
+<h2><a href="../unboxing-of-octava-4x4-hdmi-matrix-switch-hdmx44cat-uk/index.html">Unboxing of Octava 4&#215;4 HDMI Matrix Switch (HDMX44CAT-UK)</a></h2>
+<div class="post-meta">Posted in <a href="../category/audio-video/index.html" title="View all posts in Audio Video" rel="category tag">Audio Video</a> - 4 February 2011 - No comment</div>
+<p>Took delivery of my Octava 4&#215;4 HDMI CAT6 Matrix Switch today so I thought I&#8217;d draft a quick post to show some pictures of the unboxing.  I&#8217;ll follow up later with some details of my AV setup and experiences using the matrix&#8230;</p>
+<div>
+<a href="../../wp-content/uploads/2011/02/DSCF10431.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10431-150x150.jpg" alt="" title="DSCF1043[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10441.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10441-150x150.jpg" alt="" title="DSCF1044[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10451.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10451-150x150.jpg" alt="" title="DSCF1045[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-235" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10461.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10461-150x150.jpg" alt="" title="DSCF1046[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10471.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10471-150x150.jpg" alt="" title="DSCF1047[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10481.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10481-150x150.jpg" alt="" title="DSCF1048[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10491.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10491-150x150.jpg" alt="" title="DSCF1049[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-238" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10501.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10501-150x150.jpg" alt="" title="DSCF1050[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10511.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10511-150x150.jpg" alt="" title="DSCF1051[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10521.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10521-150x150.jpg" alt="" title="DSCF1052[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10531.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10531-150x150.jpg" alt="" title="DSCF1053[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10541.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10541-150x150.jpg" alt="" title="DSCF1054[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10551.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10551-150x150.jpg" alt="" title="DSCF1055[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10561.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10561-150x150.jpg" alt="" title="DSCF1056[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a> <a href="../../wp-content/uploads/2011/02/DSCF10571.jpg"><img src="../../wp-content/uploads/2011/02/DSCF10571-150x150.jpg" alt="" title="DSCF1057[1]" width="150" height="150" class="alignleft size-thumbnail wp-image-242" /></a></p>
+</div>
+<div style="clear: both; display: block;"></div>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-194">
+<h2><a href="../dropbox-and-tortoise-svnsubversion-icon-overlays-in-harmony/index.html">Dropbox and Tortoise SVN (Subversion) Icon Overlays in Harmony</a></h2>
+<div class="post-meta">Posted in <a href="../category/dropbox/index.html" title="View all posts in Dropbox" rel="category tag">Dropbox</a>,  <a href="../category/subversion/index.html" title="View all posts in Subversion" rel="category tag">Subversion</a>,  <a href="../category/web/index.html" title="View all posts in Web" rel="category tag">Web</a>,  <a href="../category/windows/index.html" title="View all posts in Windows" rel="category tag">Windows</a> - 25 October 2010 - 6 comments</div>
+<p>If you&#8217;ve been using both <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> &#038; <a target="_blank" href="http://tortoisesvn.net/">Tortoise SVN</a> simultaneously on Windows then you may have come across some irritating issues with the icon overlays used by both programs in Windows explorer.</p>
+<h2>Fix Missing Icon Overlays</h2>
+<p>Some users may be experiencing issues with their overlay icons simply not appearing at all.  This is probably due to the lame Windows restriction which only allows a maximum of 15 icon overlays to be used.</p>
+<ol>
+<li>Run &#8220;regedit&#8221; and locate:
+<pre>"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\
+Explorer\ShellIconOverlayIdentifiers\"</pre>
+</li>
+</ol>
+<p>At this level you will see a number of registry folders each representing a particular icon overlay. This list doesn&#8217;t show the 4 icon overlays used by the Windows system and so actually only 11 of the folders shown will actually be used, the others are just abandoned by Windows, nice one Bill!</p>
+<p>Luckily for us the way Windows decides which 11 to use is by simply taking the first 11 in alphabetical order. Luckily again Windows doesn&#8217;t care what the folders are named in the registry and in this way we can rename the folders to ensure that the 11 icons we want to work are the first 11 alphabetically.</p>
+<p>Ultimately however this means you&#8217;ve got to decide which icons to bin.  Personally I&#8217;ve chosen &#8220;Offline Files&#8221; (some icon used by Windows sync which I&#8217;ve never seen), and &#8220;TortoiseReadOnly&#8221;.  You may however have to ditch more depending on what programs you&#8217;ve got installed and so the decision is up to you, sorry peeps you&#8217;re on your own here.</p>
+<p>NOTE: At this point I must stress its always advisable to backup before editing the registry.</p>
+<ol>
+<li value="2">Rename the folders so there in the order you want (mine looked like below):<br/><br />
+<img src="../../wp-content/uploads/2010/10/FixMissingIconOverlays.png" alt="Fix Missing Icon Overlays" title="Fix Missing Icon Overlays" width="237" height="305" class="alignnone size-full wp-image-206" /></li>
+<li>Restart the &#8220;explorer.exe&#8221; process by killing in it task manager and then restarting (using File &#8211; &#8220;New task&#8221; &#8211; explorer)</li>
+</ol>
+<p>And bingo, any icons you were previously missing should have re-appeared.</p>
+<h2>Getting Tortoise SVN Icons to Take Priority Over Dropbox Icons</h2>
+<p>The most annoying gripe for me was that when I had a SVN project checked out to my <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> folder I had no idea what files when modified, added, removed etc because all Windows Explorer would ever display was the <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> icon overlays instead of the <a target="_blank" href="http://tortoisesvn.net/">Tortoise SVN</a> ones.</p>
+<p>Using the same technique as described above you can rename the icon overlay registry folders so that the <a target="_blank" href="http://tortoisesvn.net/">Tortoise SVN</a> icons appear before the <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> icons and thus they take priority.</p>
+<p>I renamed mine (as below left), restarted the &#8220;explorer.exe&#8221; process and now the <a target="_blank" href="http://tortoisesvn.net/">Tortoise SVN</a> icons take precedence (see below right):</p>
+<p><img style="display:inline;" src="../../wp-content/uploads/2010/10/TortoiseIconsTakePriorityOverDropboxIcons.png" alt="Tortoise Icons Take Priority Over Dropbox Icons" title="Tortoise Icons Take Priority Over Dropbox Icons" width="237" height="305" class="alignnone size-full wp-image-204" /><img style="display:inline; margin-left:20px;" src="../../wp-content/uploads/2010/10/TortoiseIconsTakePriorityExplorer.png" alt="Tortoise Icons Take Priority in Explorer" title="Tortoise Icons Take Priority in Explorer" width="203" height="305" class="alignnone size-full wp-image-209" /></p>
+<h2>Optionally: Disable the Dropbox &#8220;Green Tick&#8221; Overlay</h2>
+<p>Whilst searching the <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> forums I saw alot of users moaning that they wanted to remove the default &#8220;green tick&#8221; icon overlay used by <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> altogether.  This can be achieved as follows:</p>
+<ol>
+<li>Within the &#8220;DropboxExt1&#8243; registry folder (or whatever you named it earlier)</li>
+<li>Right click the &#8220;(Default)&#8221; value and select &#8220;Modify&#8221;</li>
+<li>Prefix the existing value with any text so that Windows can&#8217;t find it, e.g.
+<pre>"MANUALLY_EDITED_{FB314EDA-A251-47B7-93E1-CDD82E34AF8B}"</pre>
+</li>
+<li>Restart the &#8220;explorer.exe&#8221; process.</li>
+</ol>
+<p>Voila, any <a target="_blank" href="http://www.dropbox.com/referrals/NTEyODcyNzI3OQ">Dropbox</a> files/folders that aren&#8217;t sync&#8217;ing or error&#8217;ed will display their regular icon.</p>
+</div>
+<div class="clear post-spt"></div>
+<div id="post-145">
+<h2><a href="../how-to-add-in-app-toggle-apps-to-your-notification-bar/index.html">How To Add In-App Toggle Apps to Your Notification Bar</a></h2>
+<div class="post-meta">Posted in <a href="../category/android/index.html" title="View all posts in Android" rel="category tag">Android</a> - 21 October 2010 - 1 comment</div>
+<p>I have a lot of Android phone users who cannot use my &#8220;In-App&#8221; Android applications because either their phone doesn&#8217;t have the necessary hard keys available or because their phone manufacturer has retardedly hard coded their hard keys, not mentioning any names&#8230; Motorolla!!!</p>
+<p>I have come up with a solution to this issue, which is to add the application as a shortcut in your notification bar.  With the help of another couple of well respected applications this is possible as below.  (This at present isn&#8217;t something you can do with the &#8220;In-App&#8221; applications alone I&#8217;m afraid although I plan to add it in future releases).</p>
+<ol style="margin-left:30px;line-height:2em;">
+<li>Install &#8220;Bar Tender Lite&#8221; (available free from the Android Market, author &#8220;PinkVenture&#8221;)</li>
+<li>Install &#8220;Any Cut&#8221; (available free from the Android Market, author &#8220;Jeff Hamilton&#8221;)</li>
+<li>Open &#8220;Bar Tender Lite&#8221; from your application tray</li>
+<li>Press the &#8220;+ Item&#8221; button</li>
+<li>Select &#8220;Any Cut&#8221;</li>
+<li>Select &#8220;Make your own&#8221;</li>
+<li>In the &#8220;Action&#8221; text field type exactly (ensure you get the case correct):<br />android.intent.action.VOICE_COMMAND</li>
+<li>Do NOT type anything for &#8220;Data&#8221; or &#8220;Type&#8221;, leave them blank</li>
+<li>Press &#8220;OK&#8221;</li>
+<li>Enter a name of your choice for the shortcut, I suggest &#8220;Toggle Wifi&#8221; or &#8220;Toggle Bluetooth&#8221;</li>
+<li>Press &#8220;OK&#8221;</li>
+<li>Back in &#8220;Bar Tender Lite&#8221; application, press &#8220;Save&#8221; and exit the application</li>
+</ol>
+<p>Now you&#8217;re done. You should be able to drag down your notification bar from any context and you should always have a In-App shortcut available.  Note, once you&#8217;ve set-up the shortcut you can actually uninstall &#8220;Any Cut&#8221; if you want to save some space.</p>
+<p>The original point of the &#8220;In-App&#8221; apps was to be able to enable/disable in a single press however I feel a swipe followed by a press isn&#8217;t a bad compromise, heh?</p>
+<p>I would welcome any feedback on whether this has assisted people (or not)!</p>
+<h3>Troubleshooting:</h3>
+<ol style="margin-left:30px;">
+<li>If you receieve an &#8220;Application is not installed on your phone&#8221; Message
+<p>Make sure you typed the &#8220;Action&#8221; exactly as above, the case has to be exactly the same, it can&#8217;t have spaces, the first character should NOT be a capital.</li>
+<li>If you encounter other errors with &#8220;Any Cut&#8221;
+<p>Instead of Installing &#8220;Any Cut&#8221;, try installing &#8220;Manual Intent Shortcuts&#8221;, at step 5) select &#8220;Manual Intent Shortcuts&#8221;, type &#8220;Toggle Wifi&#8221; for the &#8220;Shortcut Name&#8221; and &#8220;android.intent.action.VOICE_COMMAND&#8221; for the &#8220;Action&#8221;, press OK.
+</ol>
+</div>
+<div class="clear post-spt"></div>
+<div class="page-nav">
+<span class="older"><a href="page/2/index.html" >&laquo; Previous Articles</a></span><span class="newer"></span>
+<div class="clear"></div>
+</div><!-- end page-nav -->
+
+
+</div><!-- end main-content -->
+
+<div id="sidebar">
+
+	<div class="widget">
+		<form method="get" id="searchform" action="http://www.oliverpearmain.com/"><div class="search-box">
+<input type="text" value="search this site" name="s" id="s" onfocus="if (this.value == 'search this site') {this.value = '';}" onblur="if (this.value == '') {this.value = 'search this site';}" />
+<input type="submit" id="searchsubmit" value="Search" />
+</div></form>	</div>
+
+		
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul>
+				<li class="cat-item cat-item-3"><a href="../category/android/index.html" title="View all posts filed under Android">Android</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="../category/audio-video/index.html" title="View all posts filed under Audio Video">Audio Video</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../category/c-sharp/index.html" title="View all posts filed under C#">C#</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="../category/dropbox/index.html" title="View all posts filed under Dropbox">Dropbox</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="../category/miscellaneous/index.html" title="View all posts filed under Miscellaneous">Miscellaneous</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../category/nexus-one/index.html" title="View all posts filed under Nexus One">Nexus One</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="../category/sql/index.html" title="View all posts filed under SQL">SQL</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="../category/subversion/index.html" title="View all posts filed under Subversion">Subversion</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="../category/web/index.html" title="View all posts filed under Web">Web</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../category/windows/index.html" title="View all posts filed under Windows">Windows</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="../category/wordpress/index.html" title="View all posts filed under WordPress">WordPress</a>
+</li>
+		</ul>
+	</div>
+
+	<div class="widget">
+		<h4>Calendar</h4>
+		<table id="wp-calendar" summary="Calendar">
+	<caption>April 2015</caption>
+	<thead>
+	<tr>
+		<th abbr="Monday" scope="col" title="Monday">M</th>
+		<th abbr="Tuesday" scope="col" title="Tuesday">T</th>
+		<th abbr="Wednesday" scope="col" title="Wednesday">W</th>
+		<th abbr="Thursday" scope="col" title="Thursday">T</th>
+		<th abbr="Friday" scope="col" title="Friday">F</th>
+		<th abbr="Saturday" scope="col" title="Saturday">S</th>
+		<th abbr="Sunday" scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td abbr="October" colspan="3" id="prev"><a href="../2012/10/index.html" title="View posts for October 2012">&laquo; Oct</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next" class="pad">&nbsp;</td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="2" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+	</tr>
+	<tr>
+		<td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td id="today">11</td><td>12</td>
+	</tr>
+	<tr>
+		<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+	</tr>
+	<tr>
+		<td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+	</tr>
+	<tr>
+		<td>27</td><td>28</td><td>29</td><td>30</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table>	</div>
+
+			
+</div><!-- end sidebar -->
+<div class="clear"></div>
+
+<div id="footer">
+<div id="foot-1">
+<div class="widget">
+<h4>Partner Sites</h4>
+<ul>
+<li><a href="http://www.rjp-software.co.uk/blog/" rel="friend met co-worker colleague" target="_blank">Richard Penrose</a></li>
+<li><a href="http://www.stevefenton.co.uk/Content/Blog/" rel="friend met co-worker colleague" target="_blank">Steve Fenton</a></li>
+</ul></div>
+</div><!-- end foot-1 -->
+
+<div id="foot-right">
+<div id="foot-2">
+<div class="widget">
+<h4>Archives</h4>
+<ul>
+	<li><a href='../2012/10/index.html' title='October 2012'>October 2012</a></li>
+	<li><a href='../2012/09/index.html' title='September 2012'>September 2012</a></li>
+	<li><a href='../2012/08/index.html' title='August 2012'>August 2012</a></li>
+	<li><a href='../2011/05/index.html' title='May 2011'>May 2011</a></li>
+	<li><a href='../2011/04/index.html' title='April 2011'>April 2011</a></li>
+	<li><a href='../2011/03/index.html' title='March 2011'>March 2011</a></li>
+	<li><a href='../2011/02/index.html' title='February 2011'>February 2011</a></li>
+	<li><a href='../2010/10/index.html' title='October 2010'>October 2010</a></li>
+	<li><a href='../2010/09/index.html' title='September 2010'>September 2010</a></li>
+	<li><a href='../2010/08/index.html' title='August 2010'>August 2010</a></li>
+</ul>
+</div>
+</div><!-- end foot-2 -->
+
+<div id="foot-3">
+<div class="widget">
+<h4>Pages</h4>
+<ul>
+<li class="page_item page-item-23"><a href="../../index.html" title="Home">Home</a></li>
+<li class="page_item page-item-21 current_page_item"><a href="../index.html" title="Blog">Blog</a></li>
+<li class="page_item page-item-15"><a href="../../android/index.html" title="Android">Android</a></li>
+<li class="page_item page-item-10"><a href="../../projects/index.html" title="Projects">Projects</a></li>
+<li class="page_item page-item-2"><a href="../../about/index.html" title="About">About</a></li>
+<li class="page_item page-item-97"><a href="../../contact/index.html" title="Contact">Contact</a></li>
+</ul>
+</div>
+</div><!-- end foot-3 -->
+<div class="clear"></div>
+</div><!-- end foot-right -->
+<div class="clear"></div>
+</div><!-- end footer -->
+
+<div id="footer-credit">
+Copyright &copy; 2015 <b><a href="../../index.html">Oliver Pearmain</a></b>. <a href="../../feed/index.html">Entries (RSS)</a>. Clean Simple White Theme by <a href="http://mazznoer.web.id/">Mazznoer</a>. Powered by <a href="http://wordpress.org/">WordPress</a>.
+<div id="footer-desc"></div>
+</div><!-- end footer-credit -->
+
+</div><!-- end div #container -->
+</div><!-- end div #wrapper -->
+
+<!--
+	Clean Simple White (CSW) Theme for WordPress
+	Designed by Mazznoer
+	website : http://mazznoer.web.id/
+-->
+
+	
+<!-- START: Syntax Highlighter ComPress -->
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+        'applescript			http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAppleScript.js',
+        'actionscript3 as3		http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAS3.js',
+        'bash shell				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushBash.js',
+        'coldfusion cf			http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushColdFusion.js',
+        'cpp c					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCpp.js',
+        'c# c-sharp csharp		http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCSharp.js',
+        'css					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCss.js',
+        'delphi pascal pas		http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDelphi.js',
+        'diff patch			    http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDiff.js',
+        'erl erlang				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushErlang.js',
+        'groovy					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushGroovy.js',
+        'java					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJava.js',
+        'jfx javafx				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJavaFX.js',
+        'js jscript javascript	http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJScript.js',
+        'perl pl				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPerl.js',
+        'php					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPhp.js',
+        'text plain				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPlain.js',
+        'powershell ps          http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPowerShell.js',
+        'py python				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPython.js',
+        'ruby rails ror rb		http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushRuby.js',
+        'sass scss              http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSass.js',
+        'scala					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushScala.js',
+        'sql					http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSql.js',
+        'vb vbnet				http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushVb.js',
+        'xml xhtml xslt html	http://www.oliverpearmain.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushXml.js'
+    );
+                SyntaxHighlighter.defaults['gutter'] = false;     SyntaxHighlighter.defaults['toolbar'] = false;     SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.all();
+</script>
+<!-- END: Syntax Highlighter ComPress -->
+
+	
+</body>
+</html>

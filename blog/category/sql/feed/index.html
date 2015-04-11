@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Oliver Pearmain &#187; SQL</title>
+	<atom:link href="http://www.oliverpearmain.com/blog/category/sql/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.oliverpearmain.com</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Apr 2014 08:33:43 +0000</lastBuildDate>
+	<generator>http://wordpress.org/?v=2.9.2</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>Using MAXDOP with Complex SQL Queries</title>
+		<link>http://www.oliverpearmain.com/blog/using-maxdop-with-complex-sql-queries/</link>
+		<comments>http://www.oliverpearmain.com/blog/using-maxdop-with-complex-sql-queries/#comments</comments>
+		<pubDate>Mon, 14 Feb 2011 15:55:06 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[SQL]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=253</guid>
+		<description><![CDATA[We came across a problem at work today where the CPU resource of a quad core MS SQL machine was totally consumed by someone issuing a rather complex and time-consuming SQL query (it wasn&#8217;t me honest!).
+If you&#8217;re unable to optimize or avoid running such a complex query then it is recommended you use the MAXDOP [...]]]></description>
+			<content:encoded><![CDATA[<p>We came across a problem at work today where the CPU resource of a quad core MS SQL machine was totally consumed by someone issuing a rather complex and time-consuming SQL query (it wasn&#8217;t me honest!).</p>
+<p>If you&#8217;re unable to optimize or avoid running such a complex query then it is recommended you use the <a href="http://support.microsoft.com/kb/329204" target="_blank">MAXDOP</a> (maximum degree&#8217;s of parallelism) query hint which enables you to specify the number of CPU&#8217;s used by the query.</p>
+<p>Here&#8217;s an example, using only a single CPU&#8230;</p>
+<pre class="brush:sql; gutter: false;">
+SELECT * FROM tblWithLoadsOfData WITH (NOLOCK)
+WHERE  (someField LIKE '%blah%'
+      OR someField LIKE '%foo%'
+      OR someField LIKE '%goober%'
+      OR someField LIKE '%ollie%'
+      OR someField LIKE '%cpu%'
+      OR someField LIKE '%maxdop%')
+OPTION (MAXDOP 1)
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/using-maxdop-with-complex-sql-queries/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Getting Syntax Highlighting Working with Wordpress</title>
+		<link>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/</link>
+		<comments>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/#comments</comments>
+		<pubDate>Tue, 21 Sep 2010 13:32:14 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[C#]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[WordPress]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=74</guid>
+		<description><![CDATA[Really this post is entirely for my own benefit and to merely test the Syntax Highlighter ComPress wordpress plugin that I&#8217;ve just installed.
+This plugin &#8220;is based on the latest Alex Gorbatchev&#8217;s SyntaxHighlighter Script&#8221; and enables &#8220;Code and source text of different mark-up or programming languages to be highlighted.&#8221;.
+Well here goes, here&#8217;s some C# code&#8230;
+  [...]]]></description>
+			<content:encoded><![CDATA[<p>Really this post is entirely for my own benefit and to merely test the <a href="http://wordpress.org/extend/plugins/syntax-highlighter-compress/">Syntax Highlighter ComPress</a> wordpress plugin that I&#8217;ve just installed.</p>
+<p>This plugin &#8220;is based on the latest Alex Gorbatchev&#8217;s SyntaxHighlighter Script&#8221; and enables &#8220;Code and source text of different mark-up or programming languages to be highlighted.&#8221;.</p>
+<p>Well here goes, here&#8217;s some C# code&#8230;</p>
+<pre class="brush: csharp">    /// &lt;summary&gt;
+    /// A customer.
+    /// &lt;/summary&gt;
+    public interface ICustomer
+    {
+        /// &lt;summary&gt;
+        /// Gets or sets the customers first name.
+        /// &lt;/summary&gt;
+        /// &lt;value&gt;The card request.&lt;/value&gt;
+        string FirstName { get; set; }
+    }</pre>
+<p>And some SQL code:</p>
+<pre class="brush:sql; gutter: true;">SELECT * FROM vw_tblCustomer AS C WITH (NOLOCK)
+INNER JOIN vw_tblTransaction AS T WITH (NOLOCK) ON C.id = T.id
+WHERE Customer.FirstName IS 'oliver'
+</pre>
+<p>So it does seem to work, good stuff.  Good points to note, I copied the code straight from Visual Studio, the &lt; and &gt; characters, that appear all over the place in comments, were automatically converted into &amp;lt and &amp;gt.  Tabs from the copied code were also conviently converted into appropriate spaces.</p>
+<p><del datetime="2010-09-21T12:53:46+00:00">Bad points, it isn&#8217;t immediately obvious how to turn off the line numbering.</del> Actually, all you need to do is add &#8220;gutter: false;&#8221; to the pre tag class as follows:</p>
+<pre>&lt;pre class="brush:csharp; gutter: false;"&gt;blah&lt;/pre&gt;
+</pre>
+<p>Will probably persevere with this, unless I find something better.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

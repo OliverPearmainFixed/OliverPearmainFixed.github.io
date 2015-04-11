@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Oliver Pearmain &#187; Android</title>
+	<atom:link href="http://www.oliverpearmain.com/blog/category/android/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.oliverpearmain.com</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Apr 2014 08:33:43 +0000</lastBuildDate>
+	<generator>http://wordpress.org/?v=2.9.2</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>Holy Smokes, Someone Just Put a Rocket Up My [2.2.2] Nexus One (INIT Android Process Lag/Slow Down Fix)</title>
+		<link>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/</link>
+		<comments>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/#comments</comments>
+		<pubDate>Tue, 01 Mar 2011 14:42:52 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Nexus One]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=261</guid>
+		<description><![CDATA[For many months now I&#8217;ve been experiencing varied periods of &#8220;lag&#8221; or &#8220;slow down&#8221; on my Nexus One Android phone (running FRG83G 2.2.2) .  I&#8217;d never been able to attribute this slow down to any particular application even with the help of task managers and task killers and diagnostic tools&#8230; until now&#8230;
+With some help [...]]]></description>
+			<content:encoded><![CDATA[<p>For many months now I&#8217;ve been experiencing varied periods of &#8220;lag&#8221; or &#8220;slow down&#8221; on my Nexus One Android phone (running FRG83G 2.2.2) .  I&#8217;d never been able to attribute this slow down to any particular application even with the help of task managers and task killers and diagnostic tools&#8230; until now&#8230;</p>
+<p>With some help from the &#8220;Watchdog&#8221; app (which continuously monitors all the process on your phone and notifies you if a given process has exceeded a given CPU threshold) I was finally able to attribute the problems to the &#8220;INIT&#8221; android system process. </p>
+<p>Once I&#8217;d identified this process as the problem I did a bit of Googling.  First, I found a lot of others complaining about this issue on the <a href="http://www.google.com/support/forum/p/android/thread?tid=7da0c666e8ffbc36&#038;hl=en" target="_blank">Google forums</a> but with no apparent solution.  Then fortunately I came across an <a href="http://forum.xda-developers.com/showthread.php?t=826507" target="_blank">XDA developers</a> thread that proposed to have the solution!</p>
+<p>I am very pleased to confirm that enabling the following option&#8230;</p>
+<p>    Settings > Applications > Development > USB debugging </p>
+<p>&#8230;has fixed the problem entirely.  In fact, it has absolutely made my phone run like its on steroids.  I&#8217;m staggered and absolutely elated by the difference. </p>
+<p>Many thanks to &#8220;rixsta&#8221; @XDA for the fix.</p>
+<p>For those wondering here&#8217;s a description of the &#8220;init&#8221; process&#8230;</p>
+<p><i><br />
+A key component of the Android bootup sequence is the program &#8216;init&#8217;, which is a specialized program for initializing elements of the Android system. Unlike other Linux systems (embedded or otherwise), Android uses its own initialization program. (Linux desktop systems have historically used some combination of /etc/inittab and sysV init levels &#8211; e.g. /etc/rc.d/init.d with symlinks in /etc/rc.d/rc.[2345]). Some embedded Linux systems use simplified forms of these &#8212; such as the init program included in busybox, which processes a limited form of /etc/inittab, or a direct invocation of a shell script or small program to do fixed initialization steps.</p>
+<p>The init program processes two files, executing the commands it finds in them, called &#8216;init.rc&#8217; and &#8216;init.<machine_name>.rc&#8217;, where <machine_name> is the name of the hardware that Android is running on. (Usually, this is a code word. The name of the HTC1 hardware for the ADP1 is &#8216;trout&#8217;, and the name of the emulator is &#8216;goldfish&#8217;.</p>
+<p>the &#8216;init.rc&#8217; file is intended to provide the generic initialization instructions, while the &#8216;init.<machine_name>.rc&#8217; file is intended to provide the machine-specific initialization instructions.<br />
+</i></p>
+<p><b>UPDATE: I have since received a system update to gingerbread 2.3.3 GRI40 and this seems to have fixed the issue so the USB Debugging fix is no longer required.</b></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>How To Add In-App Toggle Apps to Your Notification Bar</title>
+		<link>http://www.oliverpearmain.com/blog/how-to-add-in-app-toggle-apps-to-your-notification-bar/</link>
+		<comments>http://www.oliverpearmain.com/blog/how-to-add-in-app-toggle-apps-to-your-notification-bar/#comments</comments>
+		<pubDate>Thu, 21 Oct 2010 12:24:53 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Android]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=145</guid>
+		<description><![CDATA[I have a lot of Android phone users who cannot use my &#8220;In-App&#8221; Android applications because either their phone doesn&#8217;t have the necessary hard keys available or because their phone manufacturer has retardedly hard coded their hard keys, not mentioning any names&#8230; Motorolla!!!
+I have come up with a solution to this issue, which is to [...]]]></description>
+			<content:encoded><![CDATA[<p>I have a lot of Android phone users who cannot use my &#8220;In-App&#8221; Android applications because either their phone doesn&#8217;t have the necessary hard keys available or because their phone manufacturer has retardedly hard coded their hard keys, not mentioning any names&#8230; Motorolla!!!</p>
+<p>I have come up with a solution to this issue, which is to add the application as a shortcut in your notification bar.  With the help of another couple of well respected applications this is possible as below.  (This at present isn&#8217;t something you can do with the &#8220;In-App&#8221; applications alone I&#8217;m afraid although I plan to add it in future releases).</p>
+<ol style="margin-left:30px;line-height:2em;">
+<li>Install &#8220;Bar Tender Lite&#8221; (available free from the Android Market, author &#8220;PinkVenture&#8221;)</li>
+<li>Install &#8220;Any Cut&#8221; (available free from the Android Market, author &#8220;Jeff Hamilton&#8221;)</li>
+<li>Open &#8220;Bar Tender Lite&#8221; from your application tray</li>
+<li>Press the &#8220;+ Item&#8221; button</li>
+<li>Select &#8220;Any Cut&#8221;</li>
+<li>Select &#8220;Make your own&#8221;</li>
+<li>In the &#8220;Action&#8221; text field type exactly (ensure you get the case correct):<br />android.intent.action.VOICE_COMMAND</li>
+<li>Do NOT type anything for &#8220;Data&#8221; or &#8220;Type&#8221;, leave them blank</li>
+<li>Press &#8220;OK&#8221;</li>
+<li>Enter a name of your choice for the shortcut, I suggest &#8220;Toggle Wifi&#8221; or &#8220;Toggle Bluetooth&#8221;</li>
+<li>Press &#8220;OK&#8221;</li>
+<li>Back in &#8220;Bar Tender Lite&#8221; application, press &#8220;Save&#8221; and exit the application</li>
+</ol>
+<p>Now you&#8217;re done. You should be able to drag down your notification bar from any context and you should always have a In-App shortcut available.  Note, once you&#8217;ve set-up the shortcut you can actually uninstall &#8220;Any Cut&#8221; if you want to save some space.</p>
+<p>The original point of the &#8220;In-App&#8221; apps was to be able to enable/disable in a single press however I feel a swipe followed by a press isn&#8217;t a bad compromise, heh?</p>
+<p>I would welcome any feedback on whether this has assisted people (or not)!</p>
+<h3>Troubleshooting:</h3>
+<ol style="margin-left:30px;">
+<li>If you receieve an &#8220;Application is not installed on your phone&#8221; Message
+<p>Make sure you typed the &#8220;Action&#8221; exactly as above, the case has to be exactly the same, it can&#8217;t have spaces, the first character should NOT be a capital.</li>
+<li>If you encounter other errors with &#8220;Any Cut&#8221;
+<p>Instead of Installing &#8220;Any Cut&#8221;, try installing &#8220;Manual Intent Shortcuts&#8221;, at step 5) select &#8220;Manual Intent Shortcuts&#8221;, type &#8220;Toggle Wifi&#8221; for the &#8220;Shortcut Name&#8221; and &#8220;android.intent.action.VOICE_COMMAND&#8221; for the &#8220;Action&#8221;, press OK.
+</ol>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/how-to-add-in-app-toggle-apps-to-your-notification-bar/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Motorolla Droid X and Issues with Search Button Long Press</title>
+		<link>http://www.oliverpearmain.com/blog/motorolla-droid-x-and-issues-with-search-button-long-press/</link>
+		<comments>http://www.oliverpearmain.com/blog/motorolla-droid-x-and-issues-with-search-button-long-press/#comments</comments>
+		<pubDate>Mon, 20 Sep 2010 13:15:52 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Android]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/blog/6/test-post-2/</guid>
+		<description><![CDATA[UPDATE: You may now be able to get my &#8220;In-App&#8221; applications working on your Droid X handset.  Please see How To Add In-App Toggle Apps to Your Notification Bar.
+It has been brought to my attention by a number of Droid X users that my &#8220;In-App&#8221; Android applications aren&#8217;t working for them when performing a [...]]]></description>
+			<content:encoded><![CDATA[<p>UPDATE: You may now be able to get my &#8220;In-App&#8221; applications working on your Droid X handset.  Please see <a href="/blog/how-to-add-in-app-toggle-apps-to-your-notification-bar/">How To Add In-App Toggle Apps to Your Notification Bar</a>.</p>
+<p>It has been brought to my attention by a number of Droid X users that my &#8220;In-App&#8221; Android applications aren&#8217;t working for them when performing a search key long press.  Instead of launching my app or presenting the user with a choice of apps to launch, the &#8220;Voice Search&#8221; application is ALWAYS launched.</p>
+<p>I have done some investigtion into this problem and it would appear the issue lies with the Droid X handset and not with my applications.  Unfortunately for now this means that all of my &#8220;In-App&#8221; applications are incompatible with the Droid X handset, sorry for the inconvenience.</p>
+<p>On a typical Android handset when the user long presses the search key the &#8220;android.intent.action.VOICE_COMMAND&#8221; intent is launched.  This doesn&#8217;t appear to happen on the Droid X.  Motorolla must have hard wired the long press to the &#8220;Voice Search&#8221; application.  All other Android applications in the market that subscribe to this intent will have this issue, another example is &#8220;Button Shortcut&#8221; (take a look at some of the comments). </p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/motorolla-droid-x-and-issues-with-search-button-long-press/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

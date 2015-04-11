@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Oliver Pearmain &#187; C#</title>
+	<atom:link href="http://www.oliverpearmain.com/blog/category/c-sharp/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.oliverpearmain.com</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Apr 2014 08:33:43 +0000</lastBuildDate>
+	<generator>http://wordpress.org/?v=2.9.2</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>Why I Always Use Curly Braces/Brackets</title>
+		<link>http://www.oliverpearmain.com/blog/why-i-always-use-curly-bracesbrackets/</link>
+		<comments>http://www.oliverpearmain.com/blog/why-i-always-use-curly-bracesbrackets/#comments</comments>
+		<pubDate>Wed, 26 Sep 2012 12:19:20 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[C#]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=359</guid>
+		<description><![CDATA[Developer 1 really, really hates whitespace, it’s the spawn of the devil you know, he codes the following:
+
+if (condition)
+    doSomething();
+mustHappenAfterIfStamement();
+
+Inexperienced (or incompetent) developer 2 comes along to fix a problem or add a feature and fails many times.
+
+if (condition)
+    // doSomething(); I've temporarily commented out this line for debugging, [...]]]></description>
+			<content:encoded><![CDATA[<p>Developer 1 really, really hates whitespace, it’s the spawn of the devil you know, he codes the following:</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    doSomething();
+mustHappenAfterIfStamement();
+</pre>
+<p>Inexperienced (or incompetent) developer 2 comes along to fix a problem or add a feature and fails many times.</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    // doSomething(); I've temporarily commented out this line for debugging, oops I've now foobar'ed the flow of code execution, worth it for the whitespace saved though &lt;high fives dev 1, he’s the man&gt;
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    // I've subsequently added this comment, other devs might be confused about whether doSomething() is
+    // executed or not, but ah well at least dev 1 saved that whitespace, I hate whitespace too, even though I have a 3x 27" monitors
+    doSomething();
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    doSomething();
+    doSomthingMore(); // I’m not very good at tabbing, I'm hoping this will be executed only when condition is true, however it'll also be executed if its false. I hate it when it snows, it’s the white you see
+mustHappenAfterIfStamement();
+</pre>
+<p>I come along sees dev 1’s code and automatically refactor because I&#8217;ve made it my habit to always included curly braces.  Quick call the whitespace police… or not, it doesn’t even have to cost you your wonderful whitespace.</p>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+{   // OMG white space, my eyes are bleeding, kill me
+    doSomething();
+}   // this is insane, help me god, no more of the whiteness
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition) { doSomething(); }
+mustHappenAfterIfStamement();
+</pre>
+<pre class="brush:csharp; gutter: false;">
+if (condition)
+    { doSomething(); }
+mustHappenAfterIfStamement();
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/why-i-always-use-curly-bracesbrackets/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Getting Syntax Highlighting Working with Wordpress</title>
+		<link>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/</link>
+		<comments>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/#comments</comments>
+		<pubDate>Tue, 21 Sep 2010 13:32:14 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[C#]]></category>
+		<category><![CDATA[SQL]]></category>
+		<category><![CDATA[WordPress]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=74</guid>
+		<description><![CDATA[Really this post is entirely for my own benefit and to merely test the Syntax Highlighter ComPress wordpress plugin that I&#8217;ve just installed.
+This plugin &#8220;is based on the latest Alex Gorbatchev&#8217;s SyntaxHighlighter Script&#8221; and enables &#8220;Code and source text of different mark-up or programming languages to be highlighted.&#8221;.
+Well here goes, here&#8217;s some C# code&#8230;
+  [...]]]></description>
+			<content:encoded><![CDATA[<p>Really this post is entirely for my own benefit and to merely test the <a href="http://wordpress.org/extend/plugins/syntax-highlighter-compress/">Syntax Highlighter ComPress</a> wordpress plugin that I&#8217;ve just installed.</p>
+<p>This plugin &#8220;is based on the latest Alex Gorbatchev&#8217;s SyntaxHighlighter Script&#8221; and enables &#8220;Code and source text of different mark-up or programming languages to be highlighted.&#8221;.</p>
+<p>Well here goes, here&#8217;s some C# code&#8230;</p>
+<pre class="brush: csharp">    /// &lt;summary&gt;
+    /// A customer.
+    /// &lt;/summary&gt;
+    public interface ICustomer
+    {
+        /// &lt;summary&gt;
+        /// Gets or sets the customers first name.
+        /// &lt;/summary&gt;
+        /// &lt;value&gt;The card request.&lt;/value&gt;
+        string FirstName { get; set; }
+    }</pre>
+<p>And some SQL code:</p>
+<pre class="brush:sql; gutter: true;">SELECT * FROM vw_tblCustomer AS C WITH (NOLOCK)
+INNER JOIN vw_tblTransaction AS T WITH (NOLOCK) ON C.id = T.id
+WHERE Customer.FirstName IS 'oliver'
+</pre>
+<p>So it does seem to work, good stuff.  Good points to note, I copied the code straight from Visual Studio, the &lt; and &gt; characters, that appear all over the place in comments, were automatically converted into &amp;lt and &amp;gt.  Tabs from the copied code were also conviently converted into appropriate spaces.</p>
+<p><del datetime="2010-09-21T12:53:46+00:00">Bad points, it isn&#8217;t immediately obvious how to turn off the line numbering.</del> Actually, all you need to do is add &#8220;gutter: false;&#8221; to the pre tag class as follows:</p>
+<pre>&lt;pre class="brush:csharp; gutter: false;"&gt;blah&lt;/pre&gt;
+</pre>
+<p>Will probably persevere with this, unless I find something better.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/getting-syntax-highlighting-working-with-wordpress/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

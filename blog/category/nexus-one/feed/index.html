@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Oliver Pearmain &#187; Nexus One</title>
+	<atom:link href="http://www.oliverpearmain.com/blog/category/nexus-one/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.oliverpearmain.com</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Apr 2014 08:33:43 +0000</lastBuildDate>
+	<generator>http://wordpress.org/?v=2.9.2</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>Holy Smokes, Someone Just Put a Rocket Up My [2.2.2] Nexus One (INIT Android Process Lag/Slow Down Fix)</title>
+		<link>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/</link>
+		<comments>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/#comments</comments>
+		<pubDate>Tue, 01 Mar 2011 14:42:52 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Android]]></category>
+		<category><![CDATA[Nexus One]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=261</guid>
+		<description><![CDATA[For many months now I&#8217;ve been experiencing varied periods of &#8220;lag&#8221; or &#8220;slow down&#8221; on my Nexus One Android phone (running FRG83G 2.2.2) .  I&#8217;d never been able to attribute this slow down to any particular application even with the help of task managers and task killers and diagnostic tools&#8230; until now&#8230;
+With some help [...]]]></description>
+			<content:encoded><![CDATA[<p>For many months now I&#8217;ve been experiencing varied periods of &#8220;lag&#8221; or &#8220;slow down&#8221; on my Nexus One Android phone (running FRG83G 2.2.2) .  I&#8217;d never been able to attribute this slow down to any particular application even with the help of task managers and task killers and diagnostic tools&#8230; until now&#8230;</p>
+<p>With some help from the &#8220;Watchdog&#8221; app (which continuously monitors all the process on your phone and notifies you if a given process has exceeded a given CPU threshold) I was finally able to attribute the problems to the &#8220;INIT&#8221; android system process. </p>
+<p>Once I&#8217;d identified this process as the problem I did a bit of Googling.  First, I found a lot of others complaining about this issue on the <a href="http://www.google.com/support/forum/p/android/thread?tid=7da0c666e8ffbc36&#038;hl=en" target="_blank">Google forums</a> but with no apparent solution.  Then fortunately I came across an <a href="http://forum.xda-developers.com/showthread.php?t=826507" target="_blank">XDA developers</a> thread that proposed to have the solution!</p>
+<p>I am very pleased to confirm that enabling the following option&#8230;</p>
+<p>    Settings > Applications > Development > USB debugging </p>
+<p>&#8230;has fixed the problem entirely.  In fact, it has absolutely made my phone run like its on steroids.  I&#8217;m staggered and absolutely elated by the difference. </p>
+<p>Many thanks to &#8220;rixsta&#8221; @XDA for the fix.</p>
+<p>For those wondering here&#8217;s a description of the &#8220;init&#8221; process&#8230;</p>
+<p><i><br />
+A key component of the Android bootup sequence is the program &#8216;init&#8217;, which is a specialized program for initializing elements of the Android system. Unlike other Linux systems (embedded or otherwise), Android uses its own initialization program. (Linux desktop systems have historically used some combination of /etc/inittab and sysV init levels &#8211; e.g. /etc/rc.d/init.d with symlinks in /etc/rc.d/rc.[2345]). Some embedded Linux systems use simplified forms of these &#8212; such as the init program included in busybox, which processes a limited form of /etc/inittab, or a direct invocation of a shell script or small program to do fixed initialization steps.</p>
+<p>The init program processes two files, executing the commands it finds in them, called &#8216;init.rc&#8217; and &#8216;init.<machine_name>.rc&#8217;, where <machine_name> is the name of the hardware that Android is running on. (Usually, this is a code word. The name of the HTC1 hardware for the ADP1 is &#8216;trout&#8217;, and the name of the emulator is &#8216;goldfish&#8217;.</p>
+<p>the &#8216;init.rc&#8217; file is intended to provide the generic initialization instructions, while the &#8216;init.<machine_name>.rc&#8217; file is intended to provide the machine-specific initialization instructions.<br />
+</i></p>
+<p><b>UPDATE: I have since received a system update to gingerbread 2.3.3 GRI40 and this seems to have fixed the issue so the USB Debugging fix is no longer required.</b></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/holy-smokes-someone-just-put-a-rocket-up-my-2-2-2-nexus-one-init-android-process-lagslow-down-fix/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Oliver Pearmain &#187; Miscellaneous</title>
+	<atom:link href="http://www.oliverpearmain.com/blog/category/miscellaneous/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.oliverpearmain.com</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Apr 2014 08:33:43 +0000</lastBuildDate>
+	<generator>http://wordpress.org/?v=2.9.2</generator>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+			<item>
+		<title>Changing a Websites Site Name in IIS 7</title>
+		<link>http://www.oliverpearmain.com/blog/changing-a-websites-site-name-in-iis-7/</link>
+		<comments>http://www.oliverpearmain.com/blog/changing-a-websites-site-name-in-iis-7/#comments</comments>
+		<pubDate>Fri, 12 Oct 2012 15:16:25 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Miscellaneous]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=367</guid>
+		<description><![CDATA[Rather inconveniently there doesn&#8217;t seemed to be a way to rename your websites in the IIS Manager UI.  Everywhere the &#8220;Site Name&#8221; appears its greyed out and unchangable; I guess Microsoft have their reasons. 
+Fortunately you don&#8217;t have to delete and recreate your entire site to be able to rename, this task can be [...]]]></description>
+			<content:encoded><![CDATA[<p>Rather inconveniently there doesn&#8217;t seemed to be a way to rename your websites in the IIS Manager UI.  Everywhere the &#8220;Site Name&#8221; appears its greyed out and unchangable; I guess Microsoft have their reasons. </p>
+<p>Fortunately you don&#8217;t have to delete and recreate your entire site to be able to rename, this task can be performed from the command line using the <a href="http://www.iis.net/learn/get-started/getting-started-with-iis/getting-started-with-appcmdexe">appcmd.exe</a> utility.  </p>
+<p>Run the windows command processor but ensure you &#8220;<strong>Run as Administrator</strong>&#8221; and use the following commands:</p>
+<p><code>cd C:\Windows\SysWOW6\inetsrv\<br />
+appcmd set site ExistingSiteName -name:NewSiteName</code></p>
+<p>Thats it you&#8217;re done!</p>
+<p>Also after discovering the above I found a requirement to rename a virtual directory (adding a number on the end to remove any possibility of client caching) using the same utility&#8230;</p>
+<p><code><br />
+appcmd set VDIR "Default Web Site/oldVDirName" -path:/newVDirName<br />
+</code></p>
+<p>Plus if you had any Applications living under that virtual directory then you&#8217;ll need to move them also else they&#8217;ll be lost in oblivion&#8230;.</p>
+<p><code><br />
+appcmd set APP "Default Web Site/oldVDirName/MyApplication" -path:/newVDirName/MyApplication<br />
+</code></p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/changing-a-websites-site-name-in-iis-7/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Android: How To Launch an Email Intent Attaching a Resource via a URL</title>
+		<link>http://www.oliverpearmain.com/blog/android-how-to-launch-an-email-intent-attaching-a-resource-via-a-url/</link>
+		<comments>http://www.oliverpearmain.com/blog/android-how-to-launch-an-email-intent-attaching-a-resource-via-a-url/#comments</comments>
+		<pubDate>Wed, 08 Aug 2012 15:56:11 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Miscellaneous]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=350</guid>
+		<description><![CDATA[Today at work I had the requirement to invoke an intent that would send a plain text email but with an image attachment sourced from the internet.  I struggled to find a complete solution online for these particular requirements and thought I&#8217;d share my solution here.
+
+String urlOfImageToDownload = "https://ssl.gstatic.com/s2/oz/images"
+    + "/google-logo-plus-0fbe8f0119f4a902429a5991af5db563.png";
+String [...]]]></description>
+			<content:encoded><![CDATA[<p>Today at work I had the requirement to invoke an intent that would send a plain text email but with an <strong>image attachment sourced from the internet</strong>.  I struggled to find a complete solution online for these particular requirements and thought I&#8217;d share my solution here.</p>
+<pre class="brush:java; gutter: false;">
+String urlOfImageToDownload = "https://ssl.gstatic.com/s2/oz/images"
+    + "/google-logo-plus-0fbe8f0119f4a902429a5991af5db563.png";
+String attachmentFileName = "AnImageFromTheWeb.png";
+
+// Start to build up the email intent
+Intent i = new Intent(Intent.ACTION_SEND);
+i.setType("message/rfc822");
+i.putExtra(Intent.EXTRA_EMAIL, new String[] { "abc@mail.com" });
+i.putExtra(Intent.EXTRA_SUBJECT, "Check Out This Image");
+i.putExtra(Intent.EXTRA_TEXT, "There should be an image attached");
+
+// Do we need to download and attach an icon and is the SD Card available?
+if (urlOfImageToDownload != null &#038;&#038; Environment.MEDIA_MOUNTED.equals(
+        Environment.getExternalStorageState())) {
+    // Download the icon...
+    URL iconUrl = new URL(urlOfImageToDownload);
+    HttpURLConnection connection
+        = (HttpURLConnection) iconUrl.openConnection();
+    connection.setDoInput(true);
+    connection.connect();
+    InputStream input = connection.getInputStream();
+    Bitmap immutableBpm = BitmapFactory.decodeStream(input);
+
+    // Save the downloaded icon to the pictures folder on the SD Card
+    File directory = Environment.getExternalStoragePublicDirectory(
+        Environment.DIRECTORY_PICTURES);
+    directory.mkdirs(); // Make sure the Pictures directory exists.
+    File destinationFile = new File(directory, attachmentFileName);
+    FileOutputStream out = new FileOutputStream(destinationFile);
+    immutableBpm.compress(Bitmap.CompressFormat.PNG, 90, out);
+    out.flush();
+    out.close();
+    Uri mediaStoreImageUri = Uri.fromFile(destinationFile);		
+
+    // Add the attachment to the intent
+    i.putExtra(Intent.EXTRA_STREAM, mediaStoreImageUri);
+}						
+
+// Fire the intent
+startActivity(i);
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/android-how-to-launch-an-email-intent-attaching-a-resource-via-a-url/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>Unboxing of HD Anywhere 4&#215;4 HDMI CAT 5/6 Matrix Switch (aka Grandbeing MX0404-323)</title>
+		<link>http://www.oliverpearmain.com/blog/unboxing-of-hd-anywhere-44-hdmi-cat-56-matrix-switch-aka-grandbeing-mx0404-323/</link>
+		<comments>http://www.oliverpearmain.com/blog/unboxing-of-hd-anywhere-44-hdmi-cat-56-matrix-switch-aka-grandbeing-mx0404-323/#comments</comments>
+		<pubDate>Wed, 04 May 2011 12:49:38 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Miscellaneous]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/?p=325</guid>
+		<description><![CDATA[I purchased a HD Anywhere 4&#215;4 HDMI CAT 5/6 Matrix Switch a while and took some photos at the time of the unboxing and I&#8217;m finally getting round to sharing! This item is a replacement for the Octava equivalent that I had previously trialled with limited success and have since returned.
+The unit was purchased from [...]]]></description>
+			<content:encoded><![CDATA[<p>I purchased a HD Anywhere 4&#215;4 HDMI CAT 5/6 Matrix Switch a while and took some photos at the time of the unboxing and I&#8217;m finally getting round to sharing! This item is a replacement for the <a href="../experiences-with-octava-4x4-hdmi-matrix-switch-hdmx44cat-uk/">Octava</a> equivalent that I had previously trialled with limited success and have since returned.</p>
+<p>The unit was purchased from <a target="_blank" href="http://www.hdcable.co.uk/4x4-hdmi-matrix-hd-anywhere.html?SID=n6q6apmmpt90gebjvlcv5fqkp7">HD Cable</a> using their &#8216;AVF10&#8242; discount code which got me 10% off.  Upon receiving the unit, I did search of the interwebs and discovered that the unit is in fact just a rebranded <a target="_blank" href="http://www.grandbeing.com/product/MX0404%20323.htm">Grandbeing MX0404-323</a>.  All good.</p>
+<p>When I get the chance I&#8217;ll follow up with some details of my AV setup and experiences using the matrix&#8230;</p>
+<div>
+<a href="http://www.oliverpearmain.com/images/hd-anywhere/01.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/01-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/02.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/02-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/03.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/03-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/04.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/04-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/05.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/05-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/06.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/06-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/07.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/07-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/08.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/08-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/09.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/09-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/10.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/10-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/11.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/11-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/12.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/12-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/13.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/13-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a>  <a href="http://www.oliverpearmain.com/images/hd-anywhere/14.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/14-H150.jpg" alt=""  width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/15.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/15-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/16.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/16-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-235" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/17.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/17-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a> <a href="http://www.oliverpearmain.com/images/hd-anywhere/18.jpg"><img src="http://www.oliverpearmain.com/images/hd-anywhere/18-H150.jpg" alt="" width="150" height="113" class="alignleft size-thumbnail wp-image-238" /></a></p>
+</div>
+<div style="clear: both; display: block;"></div>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/unboxing-of-hd-anywhere-44-hdmi-cat-56-matrix-switch-aka-grandbeing-mx0404-323/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>My First Blog Post &#8211; Welcome to My Site</title>
+		<link>http://www.oliverpearmain.com/blog/my-first-blog-post-welcome-to-my-site/</link>
+		<comments>http://www.oliverpearmain.com/blog/my-first-blog-post-welcome-to-my-site/#comments</comments>
+		<pubDate>Thu, 19 Aug 2010 11:29:27 +0000</pubDate>
+		<dc:creator>Ollie</dc:creator>
+				<category><![CDATA[Miscellaneous]]></category>
+		<category><![CDATA[Web]]></category>
+
+		<guid isPermaLink="false">http://www.oliverpearmain.com/blog/?p=1</guid>
+		<description><![CDATA[This is my very first blog post on my new personal website so welcome to anyone who is reading.
+I mainly intend for this site to provide information regarding some of the small software projects that have contributed to both in the past, in the present and in the future.
+Hopefully this will be of use to [...]]]></description>
+			<content:encoded><![CDATA[<p>This is my very first blog post on my new personal website so welcome to anyone who is reading.</p>
+<p>I mainly intend for this site to provide information regarding some of the small software projects that have contributed to both in the past, in the present and in the future.</p>
+<p>Hopefully this will be of use to someone <img src='http://www.oliverpearmain.com/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://www.oliverpearmain.com/blog/my-first-blog-post-welcome-to-my-site/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
